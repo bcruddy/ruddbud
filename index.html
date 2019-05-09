@@ -96,7 +96,7 @@
                 visitor: {
                     id: config.user,
                     email: config.user,
-                    foo: config.user.include('foo'),
+                    foo: config.user.includes('foo'),
                     widgets: !!Math.round(Math.random()) ? ['foo', 'bar'] : ['baz', 'quux']
                 },
                 account: {
