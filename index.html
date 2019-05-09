@@ -97,7 +97,9 @@
                     id: config.user,
                     email: config.user,
                     foo: config.user.includes('foo'),
-                    widgets: !!Math.round(Math.random()) ? ['foo', 'bar'] : ['baz', 'quux']
+                    widgets: !!Math.round(Math.random()) ? ['foo', 'bar'] : ['baz', 'quux'],
+                    idlen: config.user.length,
+                    arr: parseFloat(config.user.length + 0.5)
                 },
                 account: {
                     id: config.account
