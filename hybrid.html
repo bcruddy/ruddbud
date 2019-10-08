@@ -58,6 +58,7 @@
             </li>
         </ul>
     <script>
+        const radicalPizzaAndroidAppApiKey = '4ea9a825-a3de-4510-448b-6815a86bd384';
         const config = (window.location.search||'')
             .slice(1)
             .split('&')
@@ -65,8 +66,8 @@
             .filter(([key, value]) => key === 'drop' || !!key && !!value)
             .reduce((memo, [key, value]) => ({ ...memo, [key]: value }),{
                 user: 'ruddy@pendo.io',
-                account: 'pendo',
-                apiKey: 'ed7428ed-14fc-47b0-5c3f-5cabed7e34e8',
+                account: 'hybrid-magic',
+                apiKey: radicalPizzaAndroidAppApiKey,
                 agentHost: 'pendo-atlas-static.storage.googleapis.com'
             });
         const AGENT_URI = `https://${config.agentHost}/agent/static/${config.apiKey}/pendo.js`;
@@ -97,9 +98,6 @@
                 },
                 account: {
                     id: config.account
-                },
-                parentAccount: {
-                    id: `parent_${config.account}`
                 },
                 sanitizeUrl (url) {
                     return !url.includes('ruddbud.pizza') ? 'https://ruddbud.pizza' : url;
