@@ -98,9 +98,6 @@
                 account: {
                     id: config.account
                 },
-                parentAccount: {
-                    id: `parent_${config.account}`
-                },
                 sanitizeUrl (url) {
                     return !url.includes('ruddbud.pizza') ? 'https://ruddbud.pizza' : url;
                 }
