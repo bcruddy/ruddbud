@@ -7,11 +7,20 @@
     <h1>no-agent.html</h1>
     <ul>
         <li>
-            <a href="/">index.html</a>
+            <a href="/">
+                index.html via `a` tag
+            </a>
         </li>
         <li>
-            <a href="/parent.html">parent.html</a>
+            <button onclick="go('/index.html')">
+                index.html via window.location
+            </button>
         </li>
     </ul>
+    <script>
+        function go (location) {
+            window.location.href = location;
+        }
+    </script>
 </body>
 </html>
