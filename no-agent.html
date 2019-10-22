@@ -17,6 +17,18 @@
             </button>
         </li>
     </ul>
+    <ul>
+        <li>
+            <a href="/no-agent.html">
+                no-agent.html via `a` tag
+            </a>
+        </li>
+        <li>
+            <button onclick="go('/no-agent.html')">
+                no-agent.html via window.location
+            </button>
+        </li>
+    </ul>
     <script>
         function go (location) {
             window.location.href = location;
