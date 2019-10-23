@@ -7,32 +7,17 @@
     <h1>no-agent.html</h1>
     <ul>
         <li>
-            <a href="/">
-                index.html via `a` tag
-            </a>
+            <a href="/">atlas</a>
         </li>
         <li>
-            <button onclick="go('/index.html')">
-                index.html via window.location
-            </button>
+            <a href="/staging.html">staging</a>
+        </li>
+        <li>
+            <a href="/prod.html">prod</a>
+        </li>
+        <li>
+            <a href="/no-agent.html">no agent</a>
         </li>
     </ul>
-    <ul>
-        <li>
-            <a href="/no-agent.html">
-                no-agent.html via `a` tag
-            </a>
-        </li>
-        <li>
-            <button onclick="go('/no-agent.html')">
-                no-agent.html via window.location
-            </button>
-        </li>
-    </ul>
-    <script>
-        function go (location) {
-            window.location.href = location;
-        }
-    </script>
 </body>
 </html>

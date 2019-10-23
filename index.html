@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>via testing</title>
+        <title>ruddbud / pendo-atlas</title>
     </head>
     <body>
         <h1 id="page-title">Why Do They? Heat-Seeking Kitties</h1>
@@ -57,89 +57,9 @@
                 Crazy About Catnip http://www.iams.com/pet-health/cat-article/crazy-about-catnip
             </li>
         </ul>
-    <script>
-        const config = (window.location.search||'')
-            .slice(1)
-            .split('&')
-            .map(kv => kv.split('='))
-            .filter(([key, value]) => key === 'drop' || !!key && !!value)
-            .reduce((memo, [key, value]) => ({ ...memo, [key]: value }),{
-                user: 'ruddy@pendo.io',
-                account: 'pendo',
-                apiKey: 'ed7428ed-14fc-47b0-5c3f-5cabed7e34e8',
-                agentHost: 'pendo-atlas-static.storage.googleapis.com'
-            });
-        const AGENT_URI = `https://${config.agentHost}/agent/static/${config.apiKey}/pendo.js`;
-
-        redirectOnDrop(config);
-
-        console.log(config);
-
-        (function(apiKey) {
-            (function(p,e,n,d,o) {
-                var v,w,x,y,z; o=p[d]=p[d]||{}; o._q=[];
-                v=['initialize','identify','updateOptions','pageLoad']; for(w=0,x=v.length;w<x;++w)(function(m) {
-                    o[m]=o[m]||function() {o._q[m===v[0]? 'unshift':'push']([m].concat([].slice.call(arguments,0)));};
-                })(v[w]);
-                y=e.createElement(n); y.async=!0; y.src=AGENT_URI;
-                z=e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y,z);
-            })(window,document,'script','pendo');
-
-            pendo.initialize({
-                apiKey: apiKey,
-                visitor: {
-                    id: config.user,
-                    email: config.user,
-                    foo: config.user.includes('foo'),
-                    widgets: !!Math.round(Math.random()) ? ['foo', 'bar'] : ['baz', 'quux'],
-                    idlen: config.user.length,
-                    arr: parseFloat(config.user.length + 0.5)
-                },
-                account: {
-                    id: config.account
-                },
-                sanitizeUrl (url) {
-                    return !url.includes('ruddbud.pizza') ? 'https://ruddbud.pizza' : url;
-                }
-            });
-        })(config.apiKey);
-
-        function redirectOnDrop (config) {
-            if(!config.hasOwnProperty('drop')) {
-                return;
-            }
-
-            const params = JSON.parse(JSON.stringify(config));
-            delete params['pendo-designer'];
-            delete params.drop;
-
-            if(params.user === 'ruddy@pendo.io') {
-                delete params.user;
-            }
-
-            if(params.account === 'pendo') {
-                delete params.account;
-            }
-
-            if(params.app === 'legacy') {
-                delete params.app;
-            }
-
-            const query = Object.entries(params)
-                .reduce((qs, [key, value]) => {
-                    if(!qs) {
-                        qs = '?';
-                    } else {
-                        qs += '&';
-                    }
-
-                    qs += [key,value].join('=');
-
-                    return qs;
-                }, '');
-
-            window.location = window.location.origin + query;
-        }
-    </script>
+        <script src="script.js"></script>
+        <script>
+            ruddbud.init('atlas');
+        </script>
     </body>
 </html>
