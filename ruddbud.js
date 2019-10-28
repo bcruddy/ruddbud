@@ -1,4 +1,4 @@
-;(function () {
+;(function (global) {
     const API_KEY_MAP = {
         prod: '71b46268-8dea-448f-4879-370c8a3cf01a',
         test: '65535364-7b78-4581-6914-3ef2a2e16130',
@@ -139,7 +139,7 @@
         document.head.appendChild(link);
     }
 
-    window.ruddbud = window.ruddbudd || {
+    global.ruddbud = global.ruddbudd || {
         init,
         getConfig,
         installAgent,
@@ -147,4 +147,4 @@
         appendEnvNav,
         appendStyles
     };
-}());
+}(window));
