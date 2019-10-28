@@ -1,0 +1,50 @@
+html,body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    color: #222222;
+    line-height: 18px;
+}
+
+body {
+    padding-top: 50px;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.env-switcher {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #eaeaea;
+    border-bottom: 1px solid #bbb;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.env-switcher a {
+    margin: auto 1em;
+    text-decoration: none;
+    color: #555;
+}
+
+.env-switcher a.active {
+   font-weight: bold;
+}
+
+.env-switcher a:hover,
+.env-switcher a:active {
+    text-decoration: underline;
+}
+
+.env-switcher a.active,
+.env-switcher a:hover,
+.env-switcher a:active {
+    color: #222;
+}
