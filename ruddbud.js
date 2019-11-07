@@ -35,11 +35,19 @@
             .reduce((memo, [key, value]) => ({...memo, [key]: value}), {
                 env,
                 visitor: 'ruddy@pendo.io',
-                account: 'pendo'
+                account: ''
             });
+        let aid = config.account;
+
+        if (!aid && config.visitor.includes('@')) {
+            const [,domain] = config.visitor.split('@');
+
+            [aid] = domain.split('.');
+        }
 
         return {
             ...config,
+            account: aid || 'pendo',
             apiKey: API_KEY_MAP[config.env],
             host: HOST_MAP[config.env]
         };
@@ -56,6 +64,7 @@
         })(window, document, 'script', 'pendo');
 
         pendo.initialize({
+            apiKey: config.apiKey,
             visitor: {
                 id: config.visitor,
                 email: config.visitor,
@@ -111,32 +120,36 @@
     }
 
     function appendEnvNav () {
-        const nav = document.createElement('nav');
-        nav.classList.add('env-switcher');
-
-        ENV_ROUTES.forEach(([route, name]) => {
-            const a = document.createElement('a');
-            a.setAttribute('href', route);
-            a.textContent = name;
-
-            if (window.location.pathname === route) {
-                a.classList.add('active');
-            }
-
-            nav.appendChild(a);
-        });
+        const links = ENV_ROUTES.map(([href, textContent]) => h('a', {
+            href,
+            textContent,
+            className: window.location.pathname === href ? 'active' : ''
+        }));
+        const nav = h('nav', {className: 'env-switcher'}, links);
 
         document.body.prepend(nav);
     }
 
     function appendStyles () {
-        const link = document.createElement('link');
-
-        link.setAttribute('href', '/style.css');
-        link.setAttribute('type', 'text/css');
-        link.setAttribute('rel', 'stylesheet');
+        const link = h('link', {
+            href: '/style.css',
+            type: 'text/css',
+            rel: 'stylesheet'
+        });
 
         document.head.appendChild(link);
+    }
+
+    function h (tag = 'div', attrs = {}, children = []) {
+        const el = document.createElement(tag);
+
+        Object.assign(el, attrs);
+
+        children.forEach((child) => {
+            el.appendChild(child);
+        });
+
+        return el;
     }
 
     global.ruddbud = global.ruddbudd || {
