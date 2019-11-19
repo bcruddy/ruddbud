@@ -34,8 +34,7 @@
             .filter(([key, value]) => key === 'drop' || !!key && !!value)
             .reduce((memo, [key, value]) => ({...memo, [key]: value}), {
                 env,
-                visitor: 'ruddy@pendo.io',
-                account: ''
+                ...getVisitorAndAccount()
             });
         let aid = config.account;
 
@@ -45,11 +44,25 @@
             [aid] = domain.split('.');
         }
 
+        persistConfig(config.visitor, aid);
+
         return {
             ...config,
-            account: aid || 'pendo',
+            account: aid,
             apiKey: API_KEY_MAP[config.env],
             host: HOST_MAP[config.env]
+        };
+    }
+
+    function persistConfig (visitor, account) {
+        window.localStorage.setItem('via', visitor);
+        window.localStorage.setItem('aid', account);
+    }
+
+    function getVisitorAndAccount () {
+        return {
+            visitor: window.localStorage.getItem('vid') || 'ruddy@pendo.io',
+            account: window.localStorage.getItem('aid') || 'pendo',
         };
     }
 
