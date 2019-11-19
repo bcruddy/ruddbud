@@ -22,6 +22,14 @@
     <script src="/ruddbud.js"></script>
     <script>
         ruddbud.init('atlas');
+
+        setTimeout(() => {
+            ruddbud.track('whoa-500', { isWhoa: true });
+        }, 500);
+
+        setTimeout(() => {
+            ruddbud.track('whoa-1750', { isWhoa: true });
+        }, 1750);
     </script>
 </body>
 

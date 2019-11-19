@@ -125,7 +125,7 @@
             textContent,
             className: window.location.pathname === href ? 'active' : ''
         }));
-        const nav = h('nav', {className: 'env-switcher'}, links);
+        const nav = h('nav', { className: 'env-switcher' }, links);
 
         document.body.prepend(nav);
     }
@@ -152,12 +152,17 @@
         return el;
     }
 
+    function track (type, properties = {}) {
+        global.pendo.track(type, properties);
+    }
+
     global.ruddbud = global.ruddbudd || {
         init,
         getConfig,
         installAgent,
         redirectOnDrop,
         appendEnvNav,
-        appendStyles
+        appendStyles,
+        track
     };
 }(window));
