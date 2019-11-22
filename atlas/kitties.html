@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ruddbud | atlas | kitties</title>
+</head>
+
+<body>
+    <h1 id="page-title">whoa</h1>
+
+    <p class="important-buttons">
+        <button class="button button-1" onclick="alert('button 1')">
+            Button One
+        </button>
+        <button class="button button-2" onclick="alert('button 3')">
+            Button Two
+        </button>
+        <button class="button button-3" onclick="alert('button 3')">
+            Button Three
+        </button>
+    </p>
+    <script src="/ruddbud.js"></script>
+    <script>
+        ruddbud.init('atlas');
+
+        setTimeout(() => {
+            ruddbud.track('kitties-500', { isKitties: true });
+        }, 500);
+
+        setTimeout(() => {
+            ruddbud.track('kitties-1750', { isKitties: true });
+        }, 1750);
+    </script>
+</body>
+
+</html>
