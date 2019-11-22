@@ -22,8 +22,8 @@
 
         redirectOnDrop(config);
         installAgent(config);
-        appendEnvNav();
         appendStyles();
+        appendEnvNav();
     }
 
     function getConfig (env = 'atlas') {
@@ -48,7 +48,7 @@
 
         return {
             ...config,
-            account: aid,
+            account: aid || 'pendo',
             apiKey: API_KEY_MAP[config.env],
             host: HOST_MAP[config.env]
         };
@@ -62,7 +62,7 @@
     function getVisitorAndAccount () {
         return {
             visitor: window.localStorage.getItem('vid') || 'ruddy@pendo.io',
-            account: window.localStorage.getItem('aid') || 'pendo',
+            account: window.localStorage.getItem('aid')
         };
     }
 
@@ -166,7 +166,7 @@
     }
 
     function track (type, properties = {}) {
-        global.pendo.track(type, properties);
+        global.pendo && global.pendo.track(type, properties);
     }
 
     global.ruddbud = global.ruddbudd || {

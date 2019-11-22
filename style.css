@@ -13,6 +13,17 @@ body {
     margin-right: 1em;
 }
 
+.important-link {
+    color: rgb(57, 18, 199);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.important-link:hover {
+    color: rgba(57, 18, 199, 0.6);
+    text-decoration: underline;
+}
+
 .env-switcher {
     position: fixed;
     top: 0;
