@@ -153,6 +153,19 @@
         document.head.appendChild(link);
     }
 
+    function appendDynamicEl () {
+        const id = `dynamic-id-${uuidv4()}`;
+
+        const el = h('p', {id, textContent: 'i have a dynamic id!'});
+        const parent = h('div', {className: 'dynamic-parent'});
+
+        parent.appendChild(el);
+
+        const sibling = document.querySelector('.important-links');
+
+        sibling.insertAdjacentElement('afterend', parent);
+    }
+
     function h (tag = 'div', attrs = {}, children = []) {
         const el = document.createElement(tag);
 
@@ -176,6 +189,7 @@
         redirectOnDrop,
         appendEnvNav,
         appendStyles,
+        appendDynamicEl,
         track
     };
 }(window));
