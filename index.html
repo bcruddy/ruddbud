@@ -2,14 +2,74 @@
 <html>
     <head>
         <title>ruddbud - a test site</title>
+        <style>
+            .form {
+                display: flex;
+                flex-flow: column nowrap;
+                max-width: 200px;
+                margin-top: 5em;
+            }
+
+            .form-item {
+                display: flex;
+                flex-flow: column nowrap;
+                margin-bottom: 1em;
+            }
+
+            .form-item label,
+            .form-item input {
+                width: 100%;
+            }
+
+            .form-item label {
+                margin-bottom: 0.5em;
+            }
+
+            .form-item button {
+                width: 100px;
+            }
+        </style>
     </head>
     <body>
-        <h1>welcome to ruddbud.pizza</h1>
-        <h2>this page does not contain the agent</h2>
+        <header>
+            <h1>welcome to ruddbud.pizza</h1>
+            <h2>this page does not contain the agent</h2>
+        </header>
+        <main>
+            <div class="form">
+                <div class="form-item">
+                    <label>Visitor ID</label>
+                    <input type="text" id="visitor-id" />
+                </div>
+                <div class="form-item">
+                    <label>Account ID</label>
+                    <input type="text" id="account-id" />
+                </div>
+                <div class="form-item">
+                    <button onclick="updateMetadata()">Update</button>
+                </div>
+            </div>
+        </main>
         <script src="/ruddbud.js"></script>
         <script>
             ruddbud.appendStyles();
             ruddbud.appendEnvNav();
+
+            const vidInput = document.getElementById('visitor-id');
+            const aidInput = document.getElementById('account-id');
+
+            function initMetadataForm () {
+                const { visitor, account } = ruddbud.getVisitorAndAccount();
+
+                vidInput.value = visitor;
+                aidInput.value = account;
+            }
+
+            function updateMetadata () {
+                ruddbud.persistConfig(vidInput.value, aidInput.value);
+            }
+
+            initMetadataForm();
         </script>
     </body>
 </html>
