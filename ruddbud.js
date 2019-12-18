@@ -2,16 +2,19 @@
     const API_KEY_MAP = {
         prod: '71b46268-8dea-448f-4879-370c8a3cf01a',
         test: '65535364-7b78-4581-6914-3ef2a2e16130',
-        atlas: 'ed7428ed-14fc-47b0-5c3f-5cabed7e34e8'
+        atlas: 'ed7428ed-14fc-47b0-5c3f-5cabed7e34e8',
+        magic: '64196e33-3652-480c-7f2a-8c218729145b'
     };
     const HOST_MAP = {
         prod: `https://cdn.pendo.io/agent/static/${API_KEY_MAP.prod}/pendo.js`,
         test: `https://pendo-test-static.storage.googleapis.com/agent/static/${API_KEY_MAP.test}/pendo.js`,
-        atlas: `https://pendo-atlas-static.storage.googleapis.com/agent/static/${API_KEY_MAP.atlas}/pendo.js`
+        atlas: `https://pendo-atlas-static.storage.googleapis.com/agent/static/${API_KEY_MAP.atlas}/pendo.js`,
+        magic: `https://pendo-magic-static.storage.googleapis.com/agent/static/${API_KEY_MAP.magic}/pendo.js`
     };
     const ENV_ROUTES = [
         ['/', 'no agent'],
         ['/atlas/', 'atlas'],
+        ['/magic/', 'magic'],
         ['/test/', 'test'],
         ['/prod/', 'prod'],
     ];

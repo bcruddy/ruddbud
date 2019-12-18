@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ruddbud | magic | whoa</title>
+</head>
+
+<body>
+    <h1 id="page-title">whoa</h1>
+
+    <p class="important-buttons">
+        <button class="button button-1" onclick="alert('button 1')">
+            Button One
+        </button>
+        <button class="button button-2" onclick="alert('button 2')">
+            Button Two
+        </button>
+        <button class="button button-3" onclick="alert('button 3')">
+            Button Three
+        </button>
+    </p>
+    <p class="important-links">
+        <a href="/magic/kitties.html" class="important-link">kitties</a>
+    </p>
+    <script src="//wzrd.in/standalone/uuid%2Fv4@latest"></script>
+    <script src="/ruddbud.js"></script>
+    <script>
+        ruddbud.init('magic');
+
+        setTimeout(() => {
+            ruddbud.track('whoa-500', { isWhoa: true });
+        }, 500);
+
+        setTimeout(() => {
+            ruddbud.track('whoa-1750', { isWhoa: true });
+        }, 1750);
+    </script>
+</body>
+
+</html>
