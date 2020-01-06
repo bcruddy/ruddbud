@@ -161,7 +161,7 @@
     }
 
     function appendDynamicEl () {
-        const id = `dynamic-id-${uuidv4()}`;
+        const id = `dynamic-id-${Math.random() * 10}`;
 
         const el = h('p', {id, textContent: 'i have a dynamic id!'});
         const parent = h('div', {className: 'dynamic-parent'});
