@@ -62,7 +62,7 @@
 
     function persistConfig (visitor, account) {
         window.localStorage.clear();
-        window.localStorage.setItem('via', visitor);
+        window.localStorage.setItem('vid', visitor);
         window.localStorage.setItem('aid', account);
     }
 
