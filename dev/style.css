@@ -1,0 +1,10 @@
+iframe {
+    width: 100%;
+    display: block;
+    border: thin solid #efefef;
+}
+
+iframe#cat-articles {
+    height: 200px;
+    margin-bottom: 50px;
+}

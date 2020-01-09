@@ -22,14 +22,17 @@
         ['/prod/', 'prod']
     ];
 
-    function init (env = 'atlas') {
+    function init (env = 'atlas', settings = {}) {
         const config = getConfig(env);
         console.log(config);
 
         redirectOnDrop(config);
         installAgent(config);
         appendStyles();
-        appendEnvNav();
+
+        if (!settings.hideNav) {
+            appendEnvNav();
+        }
     }
 
     function getConfig (env = 'atlas') {
