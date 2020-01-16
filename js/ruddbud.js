@@ -208,6 +208,7 @@
         installAgent,
         redirectOnDrop,
         appendEnvNav,
+        appendFonts,
         appendStyles,
         appendDynamicEl,
         track,
