@@ -28,6 +28,7 @@
 
         redirectOnDrop(config);
         installAgent(config);
+        appendFonts();
         appendStyles();
 
         if (!settings.hideNav) {
@@ -155,12 +156,21 @@
 
     function appendStyles () {
         const link = h('link', {
-            href: '/style.css',
+            href: '/styles/style.css',
             type: 'text/css',
             rel: 'stylesheet'
         });
 
         document.head.appendChild(link);
+    }
+
+    function appendFonts () {
+        const font = h('link', {
+            href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap',
+            rel: 'stylesheet'
+        });
+
+        document.head.appendChild(font);
     }
 
     function appendDynamicEl () {
