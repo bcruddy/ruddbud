@@ -26,6 +26,11 @@ body {
     text-decoration: underline;
 }
 
+.shitty-link:after {
+    content: "🤮";
+    display: inline-block;
+}
+
 .env-switcher {
     position: fixed;
     top: 0;
