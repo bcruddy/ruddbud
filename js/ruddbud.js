@@ -155,13 +155,17 @@
     }
 
     function appendStyles () {
-        const link = h('link', {
-            href: '/styles/style.css',
-            type: 'text/css',
-            rel: 'stylesheet'
-        });
+        const styles = ['style.css', 'hostile.css'];
 
-        document.head.appendChild(link);
+        styles.forEach(filename => {
+            const link = h('link', {
+                href: `/styles/${filename}`,
+                type: 'text/css',
+                rel: 'stylesheet'
+            });
+
+            document.head.appendChild(link);
+        });
     }
 
     function appendFonts () {
