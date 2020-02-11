@@ -1,23 +1,30 @@
 {
-  "name": "via-playground",
+  "name": "ruddbud",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "flyswatter --path=./",
+    "start:api": "nodemon server/index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bcruddy/via-playground.git"
+    "url": "git+https://github.com/bcruddy/ruddbud.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bcruddy/via-playground/issues"
+    "url": "https://github.com/bcruddy/ruddbud/issues"
   },
-  "homepage": "https://github.com/bcruddy/via-playground#readme",
+  "homepage": "https://github.com/bcruddy/ruddbud#readme",
   "devDependencies": {
-    "flyswatter": "^2.1.0"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "flyswatter": "^2.2.0",
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "uuid": "^3.4.0"
   }
 }
