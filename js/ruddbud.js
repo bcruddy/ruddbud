@@ -152,21 +152,29 @@
         }));
         const nav = h('nav', { className: 'env-switcher' }, links);
 
+        nav.prepend(h('button', {
+            onclick: () => appendStyle('hostile.css'),
+            textContent: 'enable hostile css',
+            style: 'position: absolute; left: 1em;'
+        }));
+
         document.body.prepend(nav);
     }
 
     function appendStyles () {
-        const styles = ['style.css', 'hostile.css'];
+        const styles = ['style.css'];
 
-        styles.forEach(filename => {
-            const link = h('link', {
-                href: `/styles/${filename}`,
-                type: 'text/css',
-                rel: 'stylesheet'
-            });
+        styles.forEach(appendStyle);
+    }
 
-            document.head.appendChild(link);
+    function appendStyle (filename) {
+        const link = h('link', {
+            href: `/styles/${filename}`,
+            type: 'text/css',
+            rel: 'stylesheet'
         });
+
+        document.head.appendChild(link);
     }
 
     function appendFonts () {
@@ -215,6 +223,7 @@
         appendEnvNav,
         appendFonts,
         appendStyles,
+        appendStyle,
         appendDynamicEl,
         track,
         getVisitorAndAccount,
