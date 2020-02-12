@@ -148,7 +148,7 @@
         const links = ENV_ROUTES.map(([href, textContent]) => h('a', {
             href,
             textContent,
-            className: window.location.pathname === href ? 'active' : ''
+            className: window.location.pathname.includes(href) ? 'active' : ''
         }));
         const nav = h('nav', { className: 'env-switcher' }, links);
 
