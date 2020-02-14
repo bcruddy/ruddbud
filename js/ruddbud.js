@@ -152,13 +152,36 @@
         }));
         const nav = h('nav', { className: 'env-switcher' }, links);
 
-        nav.prepend(h('button', {
-            onclick: () => appendStyle('hostile.css'),
-            textContent: 'enable hostile css',
-            style: 'position: absolute; left: 1em;'
-        }));
-
+        nav.prepend(buildLeftNavButtons())
         document.body.prepend(nav);
+    }
+
+    function buildLeftNavButtons () {
+        const leftNavWrapper = h('div', {
+            style: 'position: absolute; left: 1em; display: flex; flex-flow: row nowrap;',
+        });
+
+        [
+            buildHostileCssButton(),
+            buildSamesiteCookieButton('Strict'),
+            buildSamesiteCookieButton('None')
+        ].forEach((el) => leftNavWrapper.append(el));
+
+        return leftNavWrapper;
+    }
+
+    function buildHostileCssButton () {
+        return h('button', {
+            textContent: 'enable hostile css',
+            onclick: () => appendStyle('hostile.css')
+        });
+    }
+
+    function buildSamesiteCookieButton (samesite) {
+        return h('button', {
+            textContent: `set SameSite=${samesite}`,
+            onclick: () => document.cookie =  `ruddbudd.samesite.${samesite}=foo;Path=/;SameSite=${samesite}`
+        });
     }
 
     function appendStyles () {
