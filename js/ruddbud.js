@@ -180,7 +180,7 @@
     function buildSamesiteCookieButton (samesite) {
         return h('button', {
             textContent: `set SameSite=${samesite}`,
-            onclick: () => document.cookie =  `ruddbudd.samesite.${samesite}=foo;Path=/;SameSite=${samesite}`
+            onclick: () => document.cookie = `ruddbudd.samesite.${samesite}=foo;Path=/;SameSite=${samesite}`
         });
     }
 
