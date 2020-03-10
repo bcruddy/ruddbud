@@ -65,7 +65,6 @@
     }
 
     function persistConfig (visitor, account) {
-        window.localStorage.clear();
         window.localStorage.setItem('log-enabled', false);
         window.localStorage.setItem('vid', visitor);
         window.localStorage.setItem('aid', account);
