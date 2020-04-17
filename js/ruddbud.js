@@ -101,6 +101,8 @@
                 id: config.account
             },
             sanitizeUrl (url) {
+                console.log('sanitizeUrl input:', url);
+
                 return url.replace(/localhost:3000/, 'ruddbud.pizza');
             }
         });
