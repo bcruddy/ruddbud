@@ -87,7 +87,23 @@
             z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
         })(window, document, 'script', 'pendo');
 
+        const urlCache = new Map();
+        function sanitizeUrl (input) {
+            if (urlCache.has(input)) {
+                return urlCache.get(input);
+            }
+
+            const output = input.replace(/localhost:3000/, 'ruddbud.pizza');
+
+            urlCache.set(input, output);
+
+            console.log('sanitzeUrl', { input, output });
+
+            return output;
+        }
+
         pendo.initialize({
+            sanitizeUrl,
             apiKey: config.apiKey,
             visitor: {
                 id: config.visitor,
@@ -99,11 +115,6 @@
             },
             account: {
                 id: config.account
-            },
-            sanitizeUrl (url) {
-                console.log('sanitizeUrl input:', url);
-
-                return url.replace(/localhost:3000/, 'ruddbud.pizza');
             }
         });
     }
