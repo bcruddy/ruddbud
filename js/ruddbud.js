@@ -175,8 +175,9 @@
 
         [
             buildHostileCssButton(),
-            buildSamesiteCookieButton('Strict'),
-            buildSamesiteCookieButton('None')
+            buildSamesiteCookieButton('None'),
+            buildSamesiteCookieButton('Lax'),
+            buildSamesiteCookieButton('Strict')
         ].forEach((el) => leftNavWrapper.append(el));
 
         return leftNavWrapper;
@@ -192,7 +193,9 @@
     function buildSamesiteCookieButton (samesite) {
         return h('button', {
             textContent: `set SameSite=${samesite}`,
-            onclick: () => document.cookie = `ruddbudd.samesite.${samesite}=foo;Path=/;SameSite=${samesite}`
+            onclick: () => {
+                fetch(`/api/samesite/${samesite}`);
+            }
         });
     }
 

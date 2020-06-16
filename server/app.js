@@ -4,16 +4,17 @@ const app = require('express')();
 
 app.use(bodyparser.json());
 
-app.get('/api/samesite', (req, res) => {
+app.get('/api/samesite/:value?', (req, res) => {
     console.log('[ruddbud server/app.js] /api/samesite');
 
-    const cookie = {
-        name: 'ruddbud.sess.uuid',
-        value: uuid(),
-        options: { httpOnly: true, sameSite: 'None', secure: true }
-    };
+    const sameSite = req.params.value || 'None';
+    const cookie = [
+        'ruddbud.sess.uuid',
+        uuid(),
+        { sameSite, httpOnly: true, secure: true }
+    ];
 
-    res.cookie(cookie.name, cookie.value, cookie.options).json({ ok: true, cookie });
+    res.cookie(...cookie).json({ cookie });
 });
 
 module.exports = app;
