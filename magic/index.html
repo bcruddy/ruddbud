@@ -13,8 +13,8 @@
             <button class="button button-2" onclick="alert('button 2')">
                 Button Two
             </button>
-            <button class="button button-3" onclick="alert('button 3')">
-                Button Three
+            <button class="button button-3" onclick="invisibleIframes()">
+                invisible iframes
             </button>
         </p>
         <p class="important-links">
@@ -67,6 +67,14 @@
         <script>
             ruddbud.init('magic');
             ruddbud.appendDynamicEl();
+
+            function invisibleIframes () {
+                const style = document.createElement('style');
+
+                document.head.appendChild(style)
+                style.sheet.insertRule('iframe { display: none; }', 0);
+                style.sheet.insertRule('iframe { visibility: hidden; }', 0);
+            }
         </script>
     </body>
 </html>

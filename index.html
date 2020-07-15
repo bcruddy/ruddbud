@@ -39,11 +39,15 @@
             <div class="form">
                 <div class="form-item">
                     <label>Visitor ID</label>
-                    <input type="text" id="visitor-id" />
+                    <input type="text" id="visitorid" />
                 </div>
                 <div class="form-item">
                     <label>Account ID</label>
-                    <input type="text" id="account-id" />
+                    <input type="text" id="accountid" />
+                </div>
+                <div class="form-item">
+                    <label>Server Name</label>
+                    <input type="text" id="servername" />
                 </div>
                 <div class="form-item">
                     <button onclick="updateMetadata()">Update</button>
@@ -56,18 +60,20 @@
             ruddbud.appendStyles();
             ruddbud.appendEnvNav();
 
-            const vidInput = document.getElementById('visitor-id');
-            const aidInput = document.getElementById('account-id');
+            const vidInput = document.getElementById('visitorid');
+            const aidInput = document.getElementById('accountid');
+            const snameInput = document.getElementById('servername');
 
             function initMetadataForm () {
-                const { visitor, account } = ruddbud.getVisitorAndAccount();
+                const { visitor, account, servername } = ruddbud.getPersistedConfig();
 
                 vidInput.value = visitor;
                 aidInput.value = account;
+                snameInput.value = servername;
             }
 
             function updateMetadata () {
-                ruddbud.persistConfig(vidInput.value, aidInput.value);
+                ruddbud.persistConfig(vidInput.value, aidInput.value, snameInput.value);
             }
 
             initMetadataForm();

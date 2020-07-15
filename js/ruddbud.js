@@ -36,7 +36,7 @@
         }
     }
 
-    function getConfig (env = 'atlas') {
+    function getConfig (env = 'dev') {
         const config = (window.location.search || '')
             .slice(1)
             .split('&')
@@ -44,7 +44,7 @@
             .filter(([key, value]) => key === 'drop' || !!key && !!value)
             .reduce((memo, [key, value]) => ({...memo, [key]: value}), {
                 env,
-                ...getVisitorAndAccount()
+                ...getPersistedConfig()
             });
         let aid = config.account;
 
@@ -54,7 +54,7 @@
             [aid] = domain.split('.');
         }
 
-        persistConfig(config.visitor, aid);
+        persistConfig(config.visitor, aid, config.servername);
 
         return {
             ...config,
@@ -64,16 +64,18 @@
         };
     }
 
-    function persistConfig (visitor, account) {
+    function persistConfig (visitor, account, servername) {
         window.localStorage.setItem('log-enabled', false);
         window.localStorage.setItem('vid', visitor);
         window.localStorage.setItem('aid', account);
+        window.localStorage.setItem('sname', servername)
     }
 
-    function getVisitorAndAccount () {
+    function getPersistedConfig () {
         return {
-            visitor: window.localStorage.getItem('vid') || 'ruddy@pendo.io',
-            account: window.localStorage.getItem('aid')
+            account: window.localStorage.getItem('aid') || 'ruddbud',
+            servername: window.localStorage.getItem('sname') || 'ruddbud.pizza',
+            visitor: window.localStorage.getItem('vid') || 'user@ruddbud.pizza',
         };
     }
 
@@ -87,23 +89,10 @@
             z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
         })(window, document, 'script', 'pendo');
 
-        const urlCache = new Map();
-        function sanitizeUrl (input) {
-            if (urlCache.has(input)) {
-                return urlCache.get(input);
-            }
 
-            const output = input.replace(/localhost:3000/, 'ruddbud.pizza');
-
-            urlCache.set(input, output);
-
-            console.log('sanitzeUrl', { input, output });
-
-            return output;
-        }
 
         pendo.initialize({
-            sanitizeUrl,
+            sanitizeUrl: getSanitizeUrl(),
             apiKey: config.apiKey,
             visitor: {
                 id: config.visitor,
@@ -117,6 +106,27 @@
                 id: config.account
             }
         });
+    }
+
+    function getSanitizeUrl () {
+        const urlCache = new Map();
+
+        return function sanitizeUrl (input) {
+            if (urlCache.has(input)) {
+                return urlCache.get(input);
+            }
+
+            const { host } = new window.URL(input);
+            const { servername } = getPersistedConfig();
+
+            const output = input.replace(new RegExp(host), servername);
+
+            urlCache.set(input, output);
+
+            console.log('sanitzeUrl', {input, output});
+
+            return output;
+        }
     }
 
     function redirectOnDrop (config) {
@@ -264,7 +274,7 @@
         appendStyle,
         appendDynamicEl,
         track,
-        getVisitorAndAccount,
+        getPersistedConfig,
         persistConfig
     };
 }(window));
