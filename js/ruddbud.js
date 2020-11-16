@@ -92,7 +92,6 @@
 
 
         pendo.initialize({
-            sanitizeUrl: getSanitizeUrl(),
             apiKey: config.apiKey,
             visitor: {
                 id: config.visitor,
@@ -104,6 +103,10 @@
             },
             account: {
                 id: config.account
+            },
+            sanitizeUrl: getSanitizeUrl(),
+            annotateUrl () {
+                return { annotated: 1 }
             }
         });
     }
