@@ -22,11 +22,10 @@
         ['/prod/', 'prod']
     ];
 
-    function init (env = 'atlas', settings = {}) {
+    function init (env = 'dev', settings = {}) {
         const config = getConfig(env);
         console.log(config);
 
-        redirectOnDrop(config);
         installAgent(config);
         appendFonts();
         appendStyles();
@@ -36,7 +35,7 @@
         }
     }
 
-    function getConfig (env = 'dev') {
+    function getConfig (env) {
         const config = (window.location.search || '')
             .slice(1)
             .split('&')
@@ -74,8 +73,8 @@
     function getPersistedConfig () {
         return {
             account: window.localStorage.getItem('aid') || 'ruddbud',
-            servername: window.localStorage.getItem('sname') || 'ruddbud.pizza',
-            visitor: window.localStorage.getItem('vid') || 'user@ruddbud.pizza',
+            servername: window.localStorage.getItem('sname') || 'ruddbud.dev',
+            visitor: window.localStorage.getItem('vid') || 'user@ruddbud.dev',
         };
     }
 
@@ -126,47 +125,10 @@
 
             urlCache.set(input, output);
 
-            console.log('sanitzeUrl', {input, output});
+            console.log('sanitzeUrl', { input, output });
 
             return output;
         }
-    }
-
-    function redirectOnDrop (config) {
-        if (!config.hasOwnProperty('drop')) {
-            return;
-        }
-
-        const params = JSON.parse(JSON.stringify(config));
-        delete params['pendo-designer'];
-        delete params.drop;
-
-        if (params.user === 'ruddy@pendo.io') {
-            delete params.user;
-        }
-
-        if (params.account === 'pendo') {
-            delete params.account;
-        }
-
-        if (params.env === 'atlas') {
-            delete params.app;
-        }
-
-        const query = Object.entries(params)
-            .reduce((qs, [key, value]) => {
-                if (!qs) {
-                    qs = '?';
-                } else {
-                    qs += '&';
-                }
-
-                qs += [key, value].join('=');
-
-                return qs;
-            }, '');
-
-        window.location = window.location.origin + query;
     }
 
     function appendEnvNav () {
@@ -270,7 +232,6 @@
         init,
         getConfig,
         installAgent,
-        redirectOnDrop,
         appendEnvNav,
         appendFonts,
         appendStyles,
