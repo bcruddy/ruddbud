@@ -24,7 +24,7 @@
 
     function init (env = 'dev', settings = {}) {
         const config = getConfig(env);
-        console.log(config);
+        // console.log(config);
 
         installAgent(config);
         appendFonts();
@@ -125,7 +125,7 @@
 
             urlCache.set(input, output);
 
-            console.log('sanitzeUrl', { input, output });
+            // console.log('sanitzeUrl', { input, output });
 
             return output;
         }
