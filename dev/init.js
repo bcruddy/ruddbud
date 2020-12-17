@@ -1,5 +1,4 @@
 ruddbud.init('dev');
-ruddbud.appendDynamicEl();
 
 if (window.location.pathname.includes('iframe')) {
     setTimeout(() => {
@@ -9,4 +8,6 @@ if (window.location.pathname.includes('iframe')) {
     setTimeout(() => {
         window.pendo.track('kitties-1500');
     }, 1500);
+} else {
+    ruddbud.appendDynamicEl();
 }
