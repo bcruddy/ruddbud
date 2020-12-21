@@ -1,5 +1,9 @@
-ruddbud.init('dev');
+(function init () {
+    const isTopFrame = window === window.top;
 
-if (window === window.top) {
-    ruddbud.appendDynamicEl();
-}
+    ruddbud.init('dev', {hideNav: !isTopFrame});
+
+    if (isTopFrame) {
+        ruddbud.appendDynamicEl();
+    }
+}());
