@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ruddbud | dev | iframe</title>
+</head>
+
+<body>
+    <style>
+        body {
+            padding-top: 0;
+        }
+    </style>
+    <h2>slowpoke <span style="font-size: 12px;" id="loading-state">waiting...</span></h2>
+
+    <p>
+       initialized on a 5s delay
+    </p>
+    <p>
+        <button id="slow-load-button">useless button</button>
+    </p>
+    <p>
+        <a id="slow-load-link" href="/dev/iframe-other-cat-articles.html">kitty articles</a>
+    </p>
+
+    <script src="/js/ruddbud.js"></script>
+    <script>
+        console.log('[slow-load] rendered');
+
+        setTimeout(() => {
+            console.log('[slow-load] initializing');
+            ruddbud.init('dev', { hideNav: true });
+            document.getElementById('loading-state').innerHTML = 'loaded';
+        }, 5000);
+    </script>
+</body>
+
+</html>
