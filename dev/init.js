@@ -3,7 +3,9 @@
 
     if (isTopFrame) {
         ruddbud.appendDynamicEl();
-        // document.getElementById('about-blank').contentDocument.write('<h1>about:blank!</h1><p>no agent</p>');
+        const aboutDoc = document.getElementById('about-blank').contentDocument;
+        aboutDoc.write('<h1>about:blank!</h1><p>no agent</p>');
+        aboutDoc.close();
     }
 
     ruddbud.init('dev', { hideNav: !isTopFrame });
