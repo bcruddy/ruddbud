@@ -26,7 +26,7 @@
         const config = getConfig(env);
         // console.log(config);
 
-        installAgent(config);
+        installAgent(config, settings.skipInitialize);
         appendFonts();
         appendStyles();
 
@@ -78,7 +78,7 @@
         };
     }
 
-    function installAgent (config) {
+    function installAgent (config, skipInitialize) {
         (function (p, e, n, d, o) {
             var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
             v = ['initialize', 'identify', 'updateOptions', 'pageLoad']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
@@ -88,7 +88,11 @@
             z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
         })(window, document, 'script', 'pendo');
 
+        if (skipInitialize) {
+            console.log(`pendo installed but not initialized in ${window.location.href}`);
 
+            return;
+        }
 
         pendo.initialize({
             apiKey: config.apiKey,

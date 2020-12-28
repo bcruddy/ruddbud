@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ruddbud | dev | iframe</title>
+</head>
+
+<body>
+    <style>
+        body {
+            padding-top: 0;
+            background-color: lightgray;
+        }
+    </style>
+    <h2>
+        no init
+    </h2>
+
+    <p>
+        pendo is installed but never initialized.
+    </p>
+
+    <p>
+        <button id="no-init-button">useless button</button>
+    </p>
+    <p>
+        <a id="no-init-link" href="/dev/iframe-other-cat-articles.html">kitty articles</a>
+    </p>
+
+    <script src="/js/ruddbud.js"></script>
+    <script>
+        console.log('[skip-initialize] skipping pendo.initialize()');
+        ruddbud.init('dev', { hideNav: true, skipInitialize: true });
+    </script>
+</body>
+
+</html>
