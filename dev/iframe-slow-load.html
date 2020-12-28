@@ -9,12 +9,13 @@
     <style>
         body {
             padding-top: 0;
+            background-color: gray;
         }
     </style>
     <h2>slowpoke <span style="font-size: 12px;" id="loading-state">waiting...</span></h2>
 
     <p>
-       initialized on a 5s delay
+       initialized on a 10s delay
     </p>
     <p>
         <button id="slow-load-button">useless button</button>
@@ -31,6 +32,7 @@
             console.log('[slow-load] initializing');
             ruddbud.init('dev', { hideNav: true });
             document.getElementById('loading-state').innerHTML = 'loaded';
+            document.body.style.backgroundColor = 'white';
         }, 10000);
     </script>
 </body>
